@@ -16,6 +16,7 @@ RUN npm install
 COPY . /usr/src/app
 RUN cd /usr/src/app
 RUN npm rebuild canvas
+RUN cd ../../../
 
 EXPOSE 9076
 
