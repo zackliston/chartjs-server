@@ -13,7 +13,7 @@ COPY package.json /usr/src/app/
 RUN npm install
 
 # Bundle app source
-COPY . /usr/src/app
+COPY ./dis /usr/src/app/dist
 RUN cd /usr/src/app
 RUN npm rebuild canvas
 RUN cd ../../../
