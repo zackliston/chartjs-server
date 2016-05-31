@@ -1,0 +1,16 @@
+version: '2'
+services:
+  chartjsserver:
+    build: .
+    command: npm run dev
+    environment:
+      NODE_ENV: development
+    ports:
+      - '9076:9076'
+    volumes:
+      - .:/home/app/chartjs
+      - /home/app/chartjs/node_modules
+    depends_on:
+      - redis
+  redis:
+    image: redis

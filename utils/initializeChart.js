@@ -40,4 +40,4 @@ function initializeChart(highRiskThreshold, moderateRiskThreshold) {
   });
 }
 
-export default initializeChart;
+module.exports = initializeChart;

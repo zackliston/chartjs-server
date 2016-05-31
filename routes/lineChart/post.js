@@ -1,9 +1,8 @@
-import uuid from 'uuid';
-import redis from 'redis';
-import lineChart from '../../charts/line';
-import config from '../../config';
+const uuid = require('uuid');
+const redis = require('redis');
+const lineChart = require('../../charts/line');
 
-const client = redis.createClient(config('CACHE_REDIS'));
+const client = redis.createClient({ host: 'redis' });
 
 const DEFAULTS = {
   HEIGHT: 200,
@@ -31,10 +30,10 @@ function init(app) {
       client.expire(id, FIVE_MINUTES);
 
       return res.json({
-        chartHref: '/charts/generated/' + id
+        chartHref: `/charts/generated/${id}`
       });
     }, res.error);
   });
 }
 
-export default init;
+module.exports = init;

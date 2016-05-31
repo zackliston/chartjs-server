@@ -1,6 +1,6 @@
-import BPromise from 'bluebird';
-import Canvas from 'canvas';
-import Chart from 'nchart';
+const BPromise = require('bluebird');
+const Canvas = require('canvas');
+const Chart = require('nchart');
 
 function lineChart(chartData, chartOptions, width, height) {
   return BPromise.try(() => {
@@ -15,4 +15,4 @@ function lineChart(chartData, chartOptions, width, height) {
   });
 }
 
-export default lineChart;
+module.exports = lineChart;

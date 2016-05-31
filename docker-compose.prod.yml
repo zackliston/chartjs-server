@@ -1,0 +1,13 @@
+version: '2'
+services:
+  chartjsserver:
+    build: .
+    command: npm start
+    ports:
+      - '9076:9076'
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - redis
+  redis:
+    image: redis

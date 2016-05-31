@@ -1,23 +1,24 @@
-FROM node:4.4.1
-
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+FROM node:6.2.0
 
 # Install required native dependencies
 RUN apt-get update
 RUN apt-get -y install libcairo2-dev libjpeg62-turbo-dev libpango1.0-dev libgif-dev build-essential g++
 
-# Install app dependencies
-COPY package.json /usr/src/app/
-RUN npm install
+# Add non-admin user
+RUN useradd --user-group --create-home --shell /bin/false app
 
-# Bundle app source
-COPY ./dist /usr/src/app/dist
-RUN cd /usr/src/app
-RUN npm rebuild canvas
-RUN cd ../../../
+ENV HOME=/home/app
 
-EXPOSE 9076
+COPY package.json npm-shrinkwrap.json $HOME/chartjs/
+RUN chown -R app:app $HOME/*
 
-CMD [ "npm", "start" ]
+USER app
+WORKDIR $HOME/chartjs
+RUN npm install && npm rebuild canvas
+
+USER root
+COPY . $HOME/chartjs
+RUN chown -R app:app $HOME/*
+USER app
+
+CMD ["node", "index.js"]

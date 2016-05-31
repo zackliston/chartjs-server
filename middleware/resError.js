@@ -1,5 +1,4 @@
-import config from '../config';
-
+const config = require('../config');
 const debug = require('debug')('@agilemd:web-ecart:resError');
 
 const IS_PROD = config('IS_PROD');
@@ -57,4 +56,4 @@ function middleware(req, res, next) {
   next();
 }
 
-export default middleware;
+module.exports = middleware;

@@ -1,10 +1,9 @@
-import boom from 'boom';
-import redis from 'redis';
-import config from '../../config';
-import bluebird from 'bluebird';
+const boom = require('boom');
+const redis = require('redis');
+const bluebird = require('bluebird');
 bluebird.promisifyAll(redis.RedisClient.prototype);
 
-const client = redis.createClient(config('CACHE_REDIS'));
+const client = redis.createClient({ host: 'redis' });
 
 function init(app) {
   app.get('/charts/generated/:id', (req, res) => {
@@ -20,4 +19,4 @@ function init(app) {
   });
 }
 
-export default init;
+module.exports = init;

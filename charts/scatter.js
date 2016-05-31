@@ -1,7 +1,7 @@
-import BPromise from 'bluebird';
-import Canvas from 'canvas';
-import Chart from 'nchart';
-import initChart from '../utils/initializeChart';
+const BPromise = require('bluebird');
+const Canvas = require('canvas');
+const Chart = require('nchart');
+const initChart = require('../utils/initializeChart');
 
 function scatterChart(chartData, chartOptions, width, height, upperLimit, lowerLimit) {
   return BPromise.try(() => {
@@ -17,4 +17,4 @@ function scatterChart(chartData, chartOptions, width, height, upperLimit, lowerL
   });
 }
 
-export default scatterChart;
+module.exports = scatterChart;
