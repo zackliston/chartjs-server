@@ -6,7 +6,7 @@ services:
     environment:
       NODE_ENV: development
     ports:
-      - '9076:9076'
+      - 9076:9076
     volumes:
       - .:/home/app/chartjs
       - /home/app/chartjs/node_modules
